@@ -1,1 +1,48 @@
-export const mockCrops = [];
+import type { Crop } from '../types/crop'
+
+export const mockCrops: Crop[] = [
+  {
+    id: '1',
+    name: 'Papa',
+    location: 'Huaraz, Ancash',
+    status: 'active',
+    growthStage: 'crecimiento',
+    plantingDate: '2026-03-15',
+    area: 2.5,
+    notes: 'Variedad Yungay - Riego por aspersión',
+    createdAt: '2026-03-15T10:00:00Z',
+  },
+  {
+    id: '2',
+    name: 'Maíz',
+    location: 'Junín, Junín',
+    status: 'active',
+    growthStage: 'floracion',
+    plantingDate: '2026-01-10',
+    area: 4.0,
+    notes: 'Maíz amarillo duro - Siembra directa',
+    createdAt: '2026-01-10T08:30:00Z',
+  },
+  {
+    id: '3',
+    name: 'Quinua',
+    location: 'Puno, Puno',
+    status: 'active',
+    growthStage: 'siembra',
+    plantingDate: '2026-05-01',
+    area: 1.8,
+    notes: 'Quinua real - Cultivo orgánico certificado',
+    createdAt: '2026-05-01T09:00:00Z',
+  },
+  {
+    id: '4',
+    name: 'Arroz',
+    location: 'Chiclayo, Lambayeque',
+    status: 'harvested',
+    growthStage: 'cosecha',
+    plantingDate: '2025-11-20',
+    area: 3.2,
+    notes: 'Arroz extra - Riego por inundación controlada',
+    createdAt: '2025-11-20T07:00:00Z',
+  },
+]
