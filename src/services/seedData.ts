@@ -14,15 +14,6 @@ export interface SeedCrop {
   notes: string
 }
 
-export interface SeedAlert {
-  cropId: string
-  type: string
-  severity: 'baja' | 'media' | 'alta'
-  message: string
-  recommendation: string
-  read: boolean
-}
-
 export const DEMO_USER: SeedUser = {
   id: 'demo-user-001',
   name: 'Agricultor Demo',
@@ -59,33 +50,6 @@ export const DEMO_CROPS: SeedCrop[] = [
   },
 ]
 
-export const DEMO_ALERTS: SeedAlert[] = [
-  {
-    cropId: 'crop-papa-001',
-    type: 'helada',
-    severity: 'alta',
-    message: 'Riesgo de helada en las próximas 48 horas en Huaraz.',
-    recommendation: 'Cubre los cultivos con malla antihelada y riega antes del amanecer.',
-    read: false,
-  },
-  {
-    cropId: 'crop-maiz-001',
-    type: 'humedad',
-    severity: 'media',
-    message: 'Exceso de humedad en el suelo en Junín.',
-    recommendation: 'Reduce el riego y verifica el drenaje del terreno.',
-    read: false,
-  },
-  {
-    cropId: 'crop-quinua-001',
-    type: 'sequia',
-    severity: 'baja',
-    message: 'Condiciones de sequía leve en Puno.',
-    recommendation: 'Programa riego suplementario por las mañanas.',
-    read: false,
-  },
-]
-
 export async function seedFirestore(): Promise<void> {
   const { getFirestore, doc, collection, writeBatch } = await import('firebase/firestore')
   const { getAuth } = await import('firebase/auth')
@@ -115,12 +79,12 @@ export async function seedFirestore(): Promise<void> {
     createdAt: new Date().toISOString(),
   })
 
-  DEMO_CROPS.forEach((cropData, i) => {
+  DEMO_CROPS.forEach((cropData) => {
     const cropRef = doc(collection(db, 'crops'))
     batch.set(cropRef, {
       ...cropData,
       userId: user.uid,
-      createdAt: new Date(Date.now() - i * 86400000).toISOString(),
+      createdAt: new Date().toISOString(),
     })
   })
 
